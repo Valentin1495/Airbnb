@@ -2,7 +2,7 @@ import Search from "./Search";
 
 function Page() {
   return (
-    <div className="">
+    <div>
       <Search />
     </div>
   );

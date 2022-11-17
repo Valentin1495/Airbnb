@@ -7,12 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-interface Checkout {
-  checkout: string;
-  setCheckout: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function CheckoutDate({ checkout, setCheckout }: Checkout) {
+export default function CheckoutDate({ setCheckout }: Checkout) {
   const [value, setValue] = useState<Dayjs | null>(null);
 
   useEffect(() => {

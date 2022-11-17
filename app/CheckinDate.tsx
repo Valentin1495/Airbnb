@@ -7,12 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-interface Checkin {
-  checkin: string;
-  setCheckin: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function CheckinDate({ checkin, setCheckin }: Checkin) {
+export default function CheckinDate({ setCheckin }: Checkin) {
   const [value, setValue] = useState<Dayjs | null>(null);
 
   useEffect(() => {

@@ -2,11 +2,6 @@
 
 import { UsersIcon } from "@heroicons/react/24/solid";
 
-interface Guests {
-  guests: number;
-  setGuests: React.Dispatch<React.SetStateAction<number>>;
-}
-
 export default function Guests({ guests, setGuests }: Guests) {
   return (
     <div>

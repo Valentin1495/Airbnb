@@ -3,11 +3,6 @@
 import { Combobox } from "@headlessui/react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
-interface Destination {
-  destination: string;
-  setDestination: React.Dispatch<React.SetStateAction<string>>;
-}
-
 export default function SearchInput({
   destination,
   setDestination,

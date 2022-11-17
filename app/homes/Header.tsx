@@ -5,12 +5,14 @@ import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Transition, Dialog } from "@headlessui/react";
 import Link from "next/link";
-import SearchInput from "./SearchInput";
-import CheckinDate from "./CheckinDate";
-import CheckoutDate from "./CheckoutDate";
-import Guests from "./Guests";
+import SearchInput from "../SearchInput";
+import CheckinDate from "../CheckinDate";
+import Guests from "../Guests";
+import CheckoutDate from "../CheckoutDate";
+import { useSearchParams } from "next/navigation";
+import { format } from "date-fns";
 
-export default function Search() {
+export default function Header() {
   const [open, setOpen] = useState(false);
 
   const [destination, setDestination] = useState("");
@@ -18,19 +20,33 @@ export default function Search() {
   const [checkout, setCheckout] = useState("");
   const [guests, setGuests] = useState(1);
 
+  const searchParams = useSearchParams();
+
+  const location = searchParams.get("destination");
+  const checkinDate = format(
+    new Date(searchParams.get("checkin")!),
+    "MMM dd yyyy"
+  );
+  const checkoutDate = format(
+    new Date(searchParams.get("checkout")!),
+    "MMM dd yyyy"
+  );
+  const people = searchParams.get("guests");
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
+    <div className="sticky top-0 py-5 flex justify-center">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="outline-none hover:shadow-lg hover:duration-500
+        className="w- outline-none hover:shadow-lg hover:duration-500
                   shadow-md border rounded-full border-gray-300
                   px-5 py-1 flex items-center gap-x-2"
       >
         <div>
-          Anywhere <span className="text-gray-500 font-light mx-2">|</span> Any
-          week <span className="text-gray-500 font-light mx-2">|</span>{" "}
-          <span className="text-gray-500 font-light">Add guests</span>
+          {location} <span className="mx-2">|</span>{" "}
+          {`${checkinDate} - ${checkoutDate}`}
+          <span className="mx-2">|</span>
+          {people === "1" ? `${people} guest` : `${people} guests`}
         </div>
         <MagnifyingGlassCircleIcon className="h-10 w-10 text-[#FF385C] -mr-4" />
       </button>

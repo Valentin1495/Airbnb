@@ -1,15 +1,7 @@
-// import { useSearchParams } from "next/navigation";
 import dummyData from "../../dummyData";
 import Home from "./Home";
 
 // async function getHomes() {
-//   const searchParams = useSearchParams();
-
-//   const location = searchParams.get("destination");
-//   const checkin = new Date(searchParams.get("checkin")!);
-//   const checkout = new Date(searchParams.get("checkout")!);
-//   const guests = searchParams.get("guests");
-
 //   const options = {
 //     method: "GET",
 //     headers: {

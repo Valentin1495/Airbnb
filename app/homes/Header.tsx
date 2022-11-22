@@ -40,14 +40,13 @@ export default function Header() {
         onClick={() => setOpen(true)}
         className="w- outline-none hover:shadow-lg hover:duration-500
                   shadow-md border rounded-full border-gray-300
-                  px-5 py-1 flex items-center gap-x-2"
+                  px-5 py-1 flex items-center gap-x-2 bg-white"
       >
-        <div>
+        <h1>
           {location} <span className="mx-2">|</span>{" "}
-          {`${checkinDate} - ${checkoutDate}`}
-          <span className="mx-2">|</span>
+          {`${checkinDate} - ${checkoutDate}`} <span className="mx-2">|</span>{" "}
           {people === "1" ? `${people} guest` : `${people} guests`}
-        </div>
+        </h1>
         <MagnifyingGlassCircleIcon className="h-10 w-10 text-[#FF385C] -mr-4" />
       </button>
 

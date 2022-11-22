@@ -1,38 +1,47 @@
-import dummyData from "../../dummyData";
+import { format } from "date-fns";
+import mockData from "../../mockData";
 import Home from "./Home";
 
-// async function getHomes() {
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY!,
-//       "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-//     },
-//   };
+async function getHomes(url: string) {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY!,
+      "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+    },
+  };
 
-// const res = await fetch(
-//   `https://airbnb13.p.rapidapi.com/search-location?=${location}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=4`,
-//   options
-// );
+  const res = await fetch(`${url}`, options);
 
-// if (!res.ok) {
-//   throw new Error('Failed to fetch data')
-// }
+  return res.json();
+}
 
-// return res.json();
-// }
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: {
+    destination: string;
+    checkin: string;
+    checkout: string;
+    guests: string;
+  };
+}) {
+  const location = searchParams.destination;
+  const checkin = format(new Date(searchParams.checkin), "yyyy-MM-dd");
+  const checkout = format(new Date(searchParams.checkout), "yyyy-MM-dd");
+  const guests = searchParams.guests;
 
-export default async function Page() {
-  // const homes = await getHomes();
+  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=8`;
 
-  // price.priceItems[0].amount
+  // const homes = await getHomes(url);
 
   return (
     <main>
       <section></section>
       <section>
-        {dummyData.results.map((result) => (
+        {mockData.results?.map((result) => (
           <Home
+            id={result.id}
             key={result.id}
             name={result.name}
             url={result.url}
@@ -44,7 +53,7 @@ export default async function Page() {
             lng={result.lng}
             reviewsCount={result.reviewsCount}
             rating={result.rating!}
-            price={result.price.priceItems[0].amount}
+            price={result.price}
           />
         ))}
       </section>

@@ -1,4 +1,14 @@
+interface Items {
+  title: string;
+  amount: number;
+}
+
+interface Price {
+  priceItems: Items[];
+}
+
 interface Home {
+  id: number;
   url: string;
   name: string;
   beds: number;
@@ -9,7 +19,7 @@ interface Home {
   lng: number;
   reviewsCount: number;
   rating: number;
-  price: number;
+  price: Price;
 }
 
 interface Checkin {

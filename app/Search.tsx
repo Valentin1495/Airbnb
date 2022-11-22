@@ -28,8 +28,8 @@ export default function Search() {
                   px-5 py-1 flex items-center gap-x-2"
       >
         <div>
-          Anywhere <span className="text-gray-500 font-light mx-2">|</span> Any
-          week <span className="text-gray-500 font-light mx-2">|</span>{" "}
+          Anywhere <span className="text-gray-500 font-light mx-2">|</span>{" "}
+          Anyweek <span className="text-gray-500 font-light mx-2">|</span>{" "}
           <span className="text-gray-500 font-light">Add guests</span>
         </div>
         <MagnifyingGlassCircleIcon className="h-10 w-10 text-[#FF385C] -mr-4" />

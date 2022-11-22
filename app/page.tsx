@@ -1,11 +1,9 @@
 import Search from "./Search";
 
-function Page() {
+export default function Page() {
   return (
     <div>
       <Search />
     </div>
   );
 }
-
-export default Page;

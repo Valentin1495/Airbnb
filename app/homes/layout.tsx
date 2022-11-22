@@ -10,9 +10,6 @@ export default function HomesLayout({
     <header>
       <Header />
       {children}
-      <script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_API_KEY}&libraries=places&language=en`}
-      />
     </header>
   );
 }

@@ -1,3 +1,5 @@
+import Images from "./Images";
+
 export default function Home({
   name,
   price,
@@ -11,5 +13,9 @@ export default function Home({
   reviewsCount,
   rating,
 }: Home) {
-  return <article>{name}</article>;
+  return (
+    <article className="aspect-square">
+      <Images images={images} />
+    </article>
+  );
 }

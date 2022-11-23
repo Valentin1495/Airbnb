@@ -37,8 +37,7 @@ export default async function Page({
 
   return (
     <main>
-      <section></section>
-      <section>
+      <section className="grid grid-cols-13 gap-3">
         {mockData.results?.map((result) => (
           <Home
             id={result.id}

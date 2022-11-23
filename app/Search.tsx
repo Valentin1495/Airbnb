@@ -19,19 +19,19 @@ export default function Search() {
   const [guests, setGuests] = useState(1);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
+    <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="outline-none hover:shadow-lg hover:duration-500
+        className="outline-none hover:shadow-lg duration-500
                   shadow-md border rounded-full border-gray-300
-                  px-5 py-1 flex items-center gap-x-2"
+                  px-5 py-1 flex items-center gap-x-2 w-max"
       >
-        <div>
+        <h2>
           Anywhere <span className="text-gray-500 font-light mx-2">|</span>{" "}
           Anyweek <span className="text-gray-500 font-light mx-2">|</span>{" "}
           <span className="text-gray-500 font-light">Add guests</span>
-        </div>
+        </h2>
         <MagnifyingGlassCircleIcon className="h-10 w-10 text-[#FF385C] -mr-4" />
       </button>
 

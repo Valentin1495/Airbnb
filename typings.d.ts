@@ -39,3 +39,8 @@ interface Destination {
   destination: string;
   setDestination: React.Dispatch<React.SetStateAction<string>>;
 }
+
+interface Coords {
+  lat: number;
+  lng: number;
+}

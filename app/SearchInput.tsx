@@ -1,6 +1,7 @@
 "use client";
 
 import { Combobox } from "@headlessui/react";
+import Script from "next/script";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
 export default function SearchInput({

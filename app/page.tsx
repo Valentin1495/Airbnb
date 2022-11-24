@@ -1,11 +1,30 @@
 "use client";
+
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Search from "./Search";
 
 export default function Page() {
-  const router = useRouter();
+  const [address, setAddress] = useState<string>("");
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => {
+          const current = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          new google.maps.Geocoder()
+            .geocode({ location: current })
+            .then((res) => res.results[8].formatted_address)
+            .then(setAddress);
+        }
+      );
+    }
+  }, []);
 
   return (
     <div className="relative">

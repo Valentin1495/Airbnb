@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import InitialHomes from "./InitialHomes";
 import Logo from "./Logo";
 import Search from "./Search";
 
@@ -27,18 +28,22 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="relative">
-      <header className="sticky top-0 flex items-center border-b py-7 md:py-5 px-10 sm:justify-between">
-        <Logo />
-        <Link
-          href="/host/homes"
-          className="hover:bg-gray-100 p-3 rounded-full font-bold hidden md:inline-flex duration-500"
-        >
-          Airbnb your home
-        </Link>
+    <div>
+      <header className="relative">
+        <div className="sticky top-0 flex items-center border-b py-7 md:py-5 px-10 sm:justify-between">
+          <Logo />
+          <Link
+            href="/host/homes"
+            className="hover:bg-gray-100 p-3 rounded-full font-bold hidden md:inline-flex duration-500"
+          >
+            Airbnb your home
+          </Link>
+        </div>
+        <Search />
       </header>
-      <Search />
-      <main></main>
+      <main>
+        <InitialHomes address={address} />
+      </main>
     </div>
   );
 }

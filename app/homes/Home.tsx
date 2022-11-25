@@ -1,4 +1,4 @@
-import Images from "./Images";
+import Image from "./Images";
 
 export default function Home({
   name,
@@ -15,7 +15,7 @@ export default function Home({
 }: Home) {
   return (
     <article className="aspect-square">
-      <Images images={images} />
+      <Image images={images} />
     </article>
   );
 }

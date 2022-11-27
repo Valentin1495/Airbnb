@@ -5,6 +5,16 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "a0.muscache.com",
+        port: "",
+        pathname: "/im/pictures/**",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

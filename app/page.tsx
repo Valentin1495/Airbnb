@@ -41,7 +41,7 @@ export default function Page() {
         </div>
         <Search />
       </header>
-      <main>
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 py-5">
         <InitialHomes address={address} />
       </main>
     </div>

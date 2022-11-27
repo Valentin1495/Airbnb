@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply z-50 absolute top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 duration-300;
+  }
+
+  .icon {
+    @apply h-8 w-8 bg-white/80 hover:bg-white hover:scale-105
+    duration-200 text-black rounded-full p-1.5;
+  }
+
+  .skeleton {
+    opacity: 0.7;
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+}

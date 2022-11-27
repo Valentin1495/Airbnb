@@ -7,9 +7,9 @@ export default function HomesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <header>
+    <div>
       <Header />
       {children}
-    </header>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import useSWR from "swr";
 import mockData from "../mockData";
 import fetcher from "../utils/fetcher";
 import Home from "./homes/Home";
+import InitialHome from "./InitialHome";
 
 export default function InitialHomes({ address }: { address: string }) {
   const checkin = format(new Date(), "yyyy-MM-dd");
@@ -25,7 +26,7 @@ export default function InitialHomes({ address }: { address: string }) {
     lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
     >
       {mockData.results?.map((result) => (
-        <Home
+        <InitialHome
           id={result.id}
           key={result.id}
           name={result.name}

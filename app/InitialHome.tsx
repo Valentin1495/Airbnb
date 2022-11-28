@@ -15,6 +15,7 @@ export default function InitialHome({
   address,
   images,
   isSuperhost,
+  rareFind,
   lat,
   lng,
   reviewsCount,
@@ -50,7 +51,10 @@ export default function InitialHome({
 
   // if (isLoading) return <Skeleton />;
   return (
-    <div className="group space-y-2" onClick={() => router.push(`${url}`)}>
+    <div
+      className="group space-y-2 hover:cursor-pointer"
+      onClick={() => router.push(`${url}`)}
+    >
       <div className="relative">
         <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-xl">
           {images.map((image, idx) => (
@@ -60,8 +64,8 @@ export default function InitialHome({
               className={` 
                 ${
                   idx === page
-                    ? "opacity-1 z-50 delay-[0ms]"
-                    : "opacity-0 duration-200 ease-in-out delay-200"
+                    ? "opacity-1 delay-[0ms]"
+                    : "opacity-0 -z-10 duration-200 ease-in-out delay-200"
                 }
                 w-full object-cover duration-700 ease-in-out `}
               src={image}
@@ -85,24 +89,39 @@ export default function InitialHome({
         >
           <ChevronRightIcon className="icon" />
         </button>
+        {isSuperhost && (
+          <span className="absolute left-4 top-4 bg-white px-2 py-1 rounded-md text-sm font-bold">
+            Superhost
+          </span>
+        )}
+        {rareFind && (
+          <span className="absolute left-4 top-4 bg-white px-2 py-1 rounded-md text-sm font-bold">
+            Rare find
+          </span>
+        )}
       </div>
-      <div className="flex items-start gap-x-3 justify-between">
-        <div className="truncate">
-          <p>{name}</p>
-          <p>{address}</p>
-          <p>{`${beds} beds`}</p>
-          <p>{`$${price.priceItems[0].amount} / night`}</p>
+      <div className="flex flex-col w-full">
+        <div className="flex items-center gap-x-3 justify-between">
+          <span className="truncate inline-block font-light text-gray-500">
+            {name}
+          </span>
+          {rating && reviewsCount && (
+            <span className="flex items-center font-light">
+              <StarIcon className="h-5 w-5" /> {`${rating}(${reviewsCount})`}
+            </span>
+          )}
+          {rating && !reviewsCount && (
+            <span className="flex items-center font-light">
+              <StarIcon className="h-5 w-5" /> {rating}
+            </span>
+          )}
         </div>
-        {rating && reviewsCount && (
-          <span className="flex items-center font-light">
-            <StarIcon className="h-5 w-5" /> {`${rating}(${reviewsCount})`}
-          </span>
-        )}
-        {rating && !reviewsCount && (
-          <span className="flex items-center font-light">
-            <StarIcon className="h-5 w-5" /> {rating}
-          </span>
-        )}
+        <p className="truncate font-light text-gray-500">{address}</p>
+        <p className="font-light text-gray-500">{`${beds} beds`}</p>
+        <p>
+          {`$${price.priceItems[0].amount}`}{" "}
+          <span className="font-light text-gray-500">/ night</span>
+        </p>
       </div>
     </div>
   );

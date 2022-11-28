@@ -48,6 +48,7 @@ export default async function Page({
             address={result.address}
             images={result.images}
             isSuperhost={result.isSuperhost}
+            rareFind={result.rareFind}
             lat={result.lat}
             lng={result.lng}
             reviewsCount={result.reviewsCount}

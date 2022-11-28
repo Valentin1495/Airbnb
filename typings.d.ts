@@ -15,6 +15,7 @@ interface Home {
   address: string;
   images: string[];
   isSuperhost: boolean;
+  rareFind: boolean;
   lat: number;
   lng: number;
   reviewsCount: number;

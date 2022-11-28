@@ -29,19 +29,22 @@ export default function Page() {
 
   return (
     <div>
-      <header className="relative">
-        <div className="sticky top-0 flex items-center border-b py-7 md:py-5 px-10 sm:justify-between">
-          <Logo />
-          <Link
-            href="/host/homes"
-            className="hover:bg-gray-100 p-3 rounded-full font-bold hidden md:inline-flex duration-500"
-          >
-            Airbnb your home
-          </Link>
+      <header className="sticky top-0 z-50 bg-white">
+        <div className="relative">
+          <div className="flex items-center py-7 md:py-5 sm:justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 lg:max-w-[1400px]">
+            <Logo />
+            <Link
+              href="/host/homes"
+              className="hover:bg-gray-100 p-3 rounded-full font-bold hidden lg:inline-flex duration-500"
+            >
+              Airbnb your home
+            </Link>
+          </div>
+          <Search />
         </div>
-        <Search />
       </header>
-      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 py-5">
+      <div className="h-[1px] bg-gray-200" />
+      <main className="max-w-2xl mx-auto px-6 lg:max-w-[1400px] lg:px-8 py-5">
         <InitialHomes address={address} />
       </main>
     </div>

@@ -4,10 +4,10 @@ import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Skeleton from "./Skeleton";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 export default function InitialHome({
+  id,
   name,
   price,
   url,
@@ -49,7 +49,6 @@ export default function InitialHome({
 
   const router = useRouter();
 
-  // if (isLoading) return <Skeleton />;
   return (
     <div
       className="group space-y-2 hover:cursor-pointer"
@@ -59,24 +58,34 @@ export default function InitialHome({
         <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-xl">
           {images.map((image, idx) => (
             <Image
-              alt="home"
+              priority
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px:) 33vw, 25vw"
+              key={idx}
+              alt="home"
               className={` 
                 ${
                   idx === page
                     ? "opacity-1 delay-[0ms]"
-                    : "opacity-0 -z-10 duration-200 ease-in-out delay-200"
+                    : "opacity-0 duration-200 ease-in-out delay-200"
+                }
+                ${
+                  isLoading
+                    ? "grayscale blur-2xl scale-110"
+                    : "grayscale-0 blur-0 scale-100"
                 }
                 w-full object-cover duration-700 ease-in-out `}
               src={image}
+              onLoadingComplete={() => setIsLoading(false)}
             />
           ))}
         </div>
+
         <button
           type="button"
           title="prev"
           onClick={prev}
-          className="btn left-2"
+          className="z-0 btn left-2"
         >
           <ChevronLeftIcon className="icon" />
         </button>
@@ -84,16 +93,18 @@ export default function InitialHome({
         <button
           type="button"
           title="next"
-          className="btn right-2"
+          className="z-0 btn right-2"
           onClick={next}
         >
           <ChevronRightIcon className="icon" />
         </button>
+
         {isSuperhost && (
           <span className="absolute left-4 top-4 bg-white px-2 py-1 rounded-md text-sm font-bold">
             Superhost
           </span>
         )}
+
         {rareFind && (
           <span className="absolute left-4 top-4 bg-white px-2 py-1 rounded-md text-sm font-bold">
             Rare find
@@ -102,9 +113,7 @@ export default function InitialHome({
       </div>
       <div className="flex flex-col w-full">
         <div className="flex items-center gap-x-3 justify-between">
-          <span className="truncate inline-block font-light text-gray-500">
-            {name}
-          </span>
+          <span className="truncate inline-block">{name}</span>
           {rating && reviewsCount && (
             <span className="flex items-center font-light">
               <StarIcon className="h-5 w-5" /> {`${rating}(${reviewsCount})`}

@@ -11,18 +11,17 @@ import CheckoutDate from "./CheckoutDate";
 import Guests from "./Guests";
 
 export default function Search() {
-  const [open, setOpen] = useState(false);
-
   const [destination, setDestination] = useState("");
   const [checkin, setCheckin] = useState("");
   const [checkout, setCheckout] = useState("");
   const [guests, setGuests] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => setIsOpen(true)}
         className="outline-none hover:shadow-lg duration-500
                   shadow-md border rounded-full border-gray-300
                   px-5 py-1 flex items-center gap-x-2 w-max"
@@ -35,12 +34,12 @@ export default function Search() {
         <MagnifyingGlassCircleIcon className="h-10 w-10 text-[#FF385C] -mr-4" />
       </button>
 
-      <Transition appear show={open} as={Fragment}>
+      <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-10"
           onClose={() => {
-            setOpen(false);
+            setIsOpen(false);
             setDestination("");
             setGuests(1);
             setCheckin("");

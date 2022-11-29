@@ -1,48 +1,46 @@
-import { format } from "date-fns";
-import useSWR from "swr";
-import mockData from "../mockData";
-import fetcher from "../utils/fetcher";
-import Home from "./homes/Home";
 import InitialHome from "./InitialHome";
 
-export default function InitialHomes({ address }: { address: string }) {
-  const checkin = format(new Date(), "yyyy-MM-dd");
-  const checkout = format(
-    new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
-    "yyyy-MM-dd"
-  );
-  const guests = "2";
-
-  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${address}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=8`;
-
-  // const url2 =
-  //   "https://data.police.uk/api/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2019-10";
-
-  // const { data } = useSWR(url, fetcher);
-
+export default function InitialHomes({ homes }: { homes: Home[] }) {
   return (
     <section
       className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 
     lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
     >
-      {mockData.results?.map((result) => (
+      {homes?.map((home) => (
         <InitialHome
-          id={result.id}
-          key={result.id}
-          name={result.name}
-          url={result.url}
-          beds={result.beds}
-          address={result.address}
-          images={result.images}
-          isSuperhost={result.isSuperhost}
-          rareFind={result.rareFind}
-          lat={result.lat}
-          lng={result.lng}
-          reviewsCount={result.reviewsCount}
-          rating={result.rating!}
-          price={result.price}
+          id={home.id}
+          key={home.id}
+          name={home.name}
+          url={home.url}
+          beds={home.beds}
+          address={home.address}
+          images={home.images}
+          isSuperhost={home.isSuperhost}
+          rareFind={home.rareFind}
+          lat={home.lat}
+          lng={home.lng}
+          reviewsCount={home.reviewsCount}
+          rating={home.rating!}
+          price={home.price}
         />
       ))}
     </section>
   );
 }
+// {data?.results.map((result: Movie) => (
+//   <div key={result.id}>
+//     <div>
+//       <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-xl">
+//         <Image
+//           src={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+//           alt="movie"
+//           fill
+//           priority
+//           className="w-full object-cover"
+//           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px:) 33vw, 25vw"
+
+//         />
+//       </div>
+//     </div>
+//   </div>
+// ))}

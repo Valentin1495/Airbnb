@@ -1,8 +1,7 @@
 import { format } from "date-fns";
-import mockData from "../../mockData";
-import Home from "./Home";
+import Homes from "./Homes";
 
-async function getHomes(url: string) {
+async function getData(key: string) {
   const options = {
     method: "GET",
     headers: {
@@ -11,7 +10,7 @@ async function getHomes(url: string) {
     },
   };
 
-  const res = await fetch(`${url}`, options);
+  const res = await fetch(key, options);
 
   return res.json();
 }
@@ -30,33 +29,24 @@ export default async function Page({
   const checkin = format(new Date(searchParams.checkin), "yyyy-MM-dd");
   const checkout = format(new Date(searchParams.checkout), "yyyy-MM-dd");
   const guests = searchParams.guests;
+  const getRandomInt = (min: number, max: number) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+  };
 
-  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=8`;
+  const randomPage = getRandomInt(1, 9);
 
-  // const homes = await getHomes(url);
+  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${location}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=${randomPage}`;
+
+  const data = await getData(url);
 
   return (
-    <main>
-      <section className="grid grid-cols-13 gap-3">
-        {mockData.results?.map((result) => (
-          <Home
-            id={result.id}
-            key={result.id}
-            name={result.name}
-            url={result.url}
-            beds={result.beds}
-            address={result.address}
-            images={result.images}
-            isSuperhost={result.isSuperhost}
-            rareFind={result.rareFind}
-            lat={result.lat}
-            lng={result.lng}
-            reviewsCount={result.reviewsCount}
-            rating={result.rating!}
-            price={result.price}
-          />
-        ))}
-      </section>
-    </main>
+    <div>
+      <div className="h-[1px] bg-gray-200" />
+      <main className=" max-w-2xl mx-auto px-6 lg:max-w-[1400px] lg:px-8 py-5">
+        <Homes homes={data?.results} />
+      </main>
+    </div>
   );
 }

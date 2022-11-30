@@ -22,16 +22,17 @@ export default async function Page() {
   );
   const guests = "2";
   const address = "Seoul";
+  const getRandomInt = (min: number, max: number) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+  };
 
-  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${address}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=3`;
-  // const url =
-  //   "https://api.themoviedb.org/3/discover/tv?api_key=35e5468abfe0da7d51f2d2d364c3d636&with_networks=213&page=20";
-
-  // const timeout = Math.floor(Math.random() * 5 + 1) * 1000;
-  // await new Promise((resolve) => setTimeout(resolve, timeout));
+  const randomPage = getRandomInt(1, 9);
+  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${address}&checkin=${checkin}&checkout=${checkout}&adults=${guests}&page=${randomPage}`;
 
   const data = await getData(url);
-  console.log(data);
+
   return (
     <div>
       <Header />

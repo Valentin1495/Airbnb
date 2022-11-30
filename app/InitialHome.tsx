@@ -58,7 +58,7 @@ export default function InitialHome({
         <div className="w-full aspect-w-1 aspect-h-1 overflow-hidden rounded-xl">
           {images.map((image, idx) => (
             <Image
-              priority
+              // priority
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px:) 33vw, 25vw"
               key={idx}
@@ -126,7 +126,7 @@ export default function InitialHome({
           )}
         </div>
         <p className="truncate font-light text-gray-500">{address}</p>
-        <p className="font-light text-gray-500">{`${beds} beds`}</p>
+        {beds && <p className="font-light text-gray-500">{`${beds} beds`}</p>}
         <p>
           {`$${price.priceItems[0].amount}`}{" "}
           <span className="font-light text-gray-500">/ night</span>

@@ -3,18 +3,18 @@ import Header from "./Header";
 import InitialHomes from "./InitialHomes";
 
 async function getData(key: string) {
-  const options = {
+  const res = await fetch(key, {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY!,
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
       "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
     },
-  };
-  const res = await fetch(key, options);
+    cache: "no-store",
+  });
   return res.json();
 }
 
-export default async function Page() {
+export default async function HomePage() {
   const checkin = format(new Date(), "yyyy-MM-dd");
   const checkout = format(
     new Date().getTime() + 7 * 24 * 60 * 60 * 1000,

@@ -2,15 +2,14 @@ import { format } from "date-fns";
 import Homes from "./Homes";
 
 async function getData(key: string) {
-  const options = {
+  const res = await fetch(key, {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY!,
       "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
     },
-  };
-
-  const res = await fetch(key, options);
+    cache: "no-store",
+  });
 
   return res.json();
 }
